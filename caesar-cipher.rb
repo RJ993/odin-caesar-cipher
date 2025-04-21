@@ -59,8 +59,11 @@ def caesar_cipher()
   }
   puts "What do you need to encrypt or decrypt?"
   string = gets.chomp
-  puts "What key?"
-  shift_key = gets.chomp.to_i
+  shift_key = 0
+  while shift_key == 0 || shift_key > 25 || shift_key < -25
+    puts "What key?" 
+    shift_key = gets.chomp.to_i
+  end
   letters = string.split("")
   letters.map! do |letter|
     if possible_letters[:lowercase].key?(letter)

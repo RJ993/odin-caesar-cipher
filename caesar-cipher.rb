@@ -57,7 +57,7 @@ def caesar_cipher()
       'Z' => 26,
     }
   }
-  puts "What do you need to encrypt?"
+  puts "What do you need to encrypt or decrypt?"
   string = gets.chomp
   puts "What key?"
   shift_key = gets.chomp.to_i
@@ -67,6 +67,8 @@ def caesar_cipher()
       new_value = possible_letters[:lowercase][letter].to_i + shift_key
       if new_value > 26
         letter = possible_letters[:lowercase].key(new_value - 26)
+      elsif new_value < 1
+        letter = possible_letters[:lowercase].key(new_value + 26)
       else
         letter = possible_letters[:lowercase].key(new_value)
       end
@@ -75,6 +77,8 @@ def caesar_cipher()
       new_value = possible_letters[:uppercase][letter].to_i + shift_key
       if new_value > 26
         letter = possible_letters[:uppercase].key(new_value - 26)
+      elsif new_value < 1
+        letter = possible_letters[:uppercase].key(new_value + 26)
       else
         letter = possible_letters[:uppercase].key(new_value)
       end

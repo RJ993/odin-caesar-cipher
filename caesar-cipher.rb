@@ -1,4 +1,4 @@
-def caesar_cipher()
+def caesar_cipher
   possible_letters = {
     lowercase: {
       'a' => 1,
@@ -26,7 +26,7 @@ def caesar_cipher()
       'w' => 23,
       'x' => 24,
       'y' => 25,
-      'z' => 26,
+      'z' => 26
     },
     uppercase: {
       'A' => 1,
@@ -54,41 +54,41 @@ def caesar_cipher()
       'W' => 23,
       'X' => 24,
       'Y' => 25,
-      'Z' => 26,
+      'Z' => 26
     }
   }
-  puts "What do you need to encrypt or decrypt?"
+  puts 'What do you need to encrypt or decrypt?'
   string = gets.chomp
   shift_key = 0
   while shift_key == 0 || shift_key > 25 || shift_key < -25
-    puts "What key?" 
+    puts 'What key?'
     shift_key = gets.chomp.to_i
   end
-  letters = string.split("")
+  letters = string.split('')
   letters.map! do |letter|
     if possible_letters[:lowercase].key?(letter)
       new_value = possible_letters[:lowercase][letter].to_i + shift_key
-      if new_value > 26
-        letter = possible_letters[:lowercase].key(new_value - 26)
-      elsif new_value < 1
-        letter = possible_letters[:lowercase].key(new_value + 26)
-      else
-        letter = possible_letters[:lowercase].key(new_value)
-      end
+      letter = if new_value > 26
+                 possible_letters[:lowercase].key(new_value - 26)
+               elsif new_value < 1
+                 possible_letters[:lowercase].key(new_value + 26)
+               else
+                 possible_letters[:lowercase].key(new_value)
+               end
     end
     if possible_letters[:uppercase].key?(letter)
       new_value = possible_letters[:uppercase][letter].to_i + shift_key
-      if new_value > 26
-        letter = possible_letters[:uppercase].key(new_value - 26)
-      elsif new_value < 1
-        letter = possible_letters[:uppercase].key(new_value + 26)
-      else
-        letter = possible_letters[:uppercase].key(new_value)
-      end
+      letter = if new_value > 26
+                 possible_letters[:uppercase].key(new_value - 26)
+               elsif new_value < 1
+                 possible_letters[:uppercase].key(new_value + 26)
+               else
+                 possible_letters[:uppercase].key(new_value)
+               end
     end
     letter
   end
-  puts letters.join("")
+  puts letters.join('')
 end
 
 caesar_cipher
